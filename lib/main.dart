@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ukk_2025/beranda.dart';
+import 'package:ukk_2025/akun.dart';
 import 'package:ukk_2025/login.dart';
+import 'package:ukk_2025/pelanggan.dart';
+import 'package:ukk_2025/penjualan.dart';
+import 'package:ukk_2025/produk.dart';
 
 void main() async {
   await Supabase.initialize(
@@ -36,9 +39,9 @@ class HomePage extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Fish & Coral Store'),
+          title: const Text('Warung Warungan'),
           centerTitle: true,
-          backgroundColor: const Color.fromRGBO(201, 230, 240, 1),
+          backgroundColor: Colors.green,
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.store), text: 'Produk'),
@@ -50,11 +53,10 @@ class HomePage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            Beranda()
-            // ProdukPage(),
-            // PenjualanPage(),
-            // PelangganPage(),
-            // AkunPage(),
+            Produk(),
+            Penjualan(),
+            Pelanggan(),
+            Akun(),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ukk_2025/beranda.dart';
+import 'package:ukk_2025/main.dart';
+import 'package:ukk_2025/produk.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,52 +17,52 @@ class _LoginState extends State<Login> {
   final SupabaseClient supabase = Supabase.instance.client;
 
 
-  //fungsi login dengan memverifikasi username dan password di supabase
+  //fungsi _login buat verifikasi username dan password di supabase
   Future<void> _login() async {
-    // final username = _usernameController.text;
-    // final password = _passwordController.text;
+    final username = _usernameController.text;
+    final password = _passwordController.text;
 
-    // try {
-    //   final response = await supabase
-    //       .from('user')
-    //       .select('username, password')
-    //       .eq('username', username)
-    //       .maybeSingle();
+    try {
+      final response = await supabase
+          .from('user')
+          .select('username, password')
+          .eq('username', username)
+          .maybeSingle();
 
-    //   if (response == null) {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(content: Text('Username tidak ditemukan!',style: TextStyle(color: Colors.white),
-    //       ),
-    //       backgroundColor: Colors.red,
-    //       ),
-    //     );
-    //     return;
-    //   }
+      if (response == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Username tidak ditemukan!',style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red,
+          ),
+        );
+        return;
+      }
 
-    //   if (response['password'] == password) {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(content: Text('Login berhasil!',style: TextStyle(color: Colors.white)),
-    //       backgroundColor: Colors.green,
-    //       ),
-    //     );
-    //     Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => Beranda()),
-    //     );
-    //   } else {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //       SnackBar(content: Text('Password salah!',style: TextStyle(color: Colors.white)),
-    //       backgroundColor: Colors.red,
-    //       ),
-    //     );
-    //   }
-    // } catch (e) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text('Terjadi kesalahan: ${e.toString()}',style: TextStyle(color: Colors.white)),
-    //     backgroundColor: Colors.red,
-    //     ),
-    //   );
-    // }
+      if (response['password'] == password) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login berhasil!',style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.green,
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Password salah!',style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan: ${e.toString()}',style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
 
@@ -92,8 +93,8 @@ class _LoginState extends State<Login> {
           ),
           
           TextFormField(
-            // controller: _usernameController,
-            // keyboardType: TextInputType.text,
+            controller: _usernameController,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Username',
               prefixIcon: Icon(
@@ -104,12 +105,12 @@ class _LoginState extends State<Login> {
                 borderRadius: BorderRadius.circular(50),
               ),
             ),
-          //  validator: (value) {
-          //         if (value == null || value.trim().isEmpty) {
-          //           return 'Tolong masukkan username';
-          //         }
-          //         return null;
-          //   },
+           validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Tolong masukkan username';
+                  }
+                  return null;
+            },
             ),
       
       
@@ -119,8 +120,8 @@ class _LoginState extends State<Login> {
           ),
 
             TextFormField(
-            // controller: _passwordController,
-            // keyboardType: TextInputType.text,
+            controller: _passwordController,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Password',
                prefixIcon: Icon(
@@ -131,28 +132,28 @@ class _LoginState extends State<Login> {
                 borderRadius: BorderRadius.circular(50),
               )
             ),
-            // onChanged: (String value) {},
-            // validator: (value) {
-            //   return value!.isEmpty ? 'Tolong masukkan password' : null;
-            // },
+            onChanged: (String value) {},
+            validator: (value) {
+              return value!.isEmpty ? 'Tolong masukkan password' : null;
+            },
             ),
 
             SizedBox(
               height: 20
               ),
 
-              // ElevatedButton(onPressed: _login,
-              //  child:Text('Login')),
+              ElevatedButton(onPressed: _login,
+               child:Text('Login')),
 
-            ElevatedButton(
-              onPressed: (){
-              Navigator.push(
-                context,
-              MaterialPageRoute(builder: (context)=> const Beranda()),
-              );
-            },
-             child: Text('Login')
-          ),
+          //   ElevatedButton(
+          //     onPressed: (){
+          //     Navigator.push(
+          //       context,
+          //     MaterialPageRoute(builder: (context)=> const Beranda()),
+          //     );
+          //   },
+          //    child: Text('Login')
+          // ),
         ],
       ),
       );
