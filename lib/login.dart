@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:ukk_2025/main.dart';
-import 'package:ukk_2025/produk.dart';
+import 'package:ukk_2025/home_page.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -69,11 +68,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
-      backgroundColor: Colors.green.shade300,
+      backgroundColor: Color.fromRGBO(120, 179, 206, 1),
       appBar: AppBar(
         title: Text('Login'),
-        backgroundColor: Colors.green,
-        titleTextStyle: TextStyle(color: Colors.white),
+        backgroundColor: Color.fromRGBO(201, 230, 240, 1),
+        //titleTextStyle: TextStyle(color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
