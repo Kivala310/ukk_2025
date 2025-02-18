@@ -96,9 +96,11 @@ class _LoginState extends State<Login> {
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Username',
+              filled: true,
+              fillColor: Color.fromRGBO(201, 230, 240, 1),
               prefixIcon: Icon(
                 Icons.person,
-                color: Colors.white,
+                color: Color.fromRGBO(120, 179, 206, 1),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
@@ -120,12 +122,15 @@ class _LoginState extends State<Login> {
 
             TextFormField(
             controller: _passwordController,
+            obscureText: true,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Password',
+              filled: true,
+              fillColor: Color.fromRGBO(201, 230, 240, 1),
                prefixIcon: Icon(
                 Icons.password,
-                color: Colors.white,
+                color: Color.fromRGBO(120, 179, 206, 1),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),

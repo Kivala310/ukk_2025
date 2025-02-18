@@ -12,6 +12,7 @@ class _AkunState extends State<Akun> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(120, 179, 206, 1),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Center(

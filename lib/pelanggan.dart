@@ -134,13 +134,13 @@ class _PelangganState extends State<Pelanggan> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromRGBO(120, 179, 206, 1),
         body: TabBarView(
           children: [
             pelanggan.isEmpty
                 ? const Center(child: CircularProgressIndicator())
                 : Scaffold(
-                    backgroundColor: Colors.green.shade200,
+                    backgroundColor: Color.fromRGBO(120, 179, 206, 1),
                     body: Column(
                       children: [
                         Padding(
@@ -149,6 +149,8 @@ class _PelangganState extends State<Pelanggan> {
                             controller: _searchController,
                             decoration: const InputDecoration(
                               hintText: 'Cari pelanggan...',
+                              filled: true,
+                              fillColor: Color.fromRGBO(201, 230, 240, 1),
                               prefixIcon: Icon(Icons.search),
                               border: OutlineInputBorder(),
                             ),
@@ -257,7 +259,7 @@ class _PelangganState extends State<Pelanggan> {
                           fetchPelanggan();
                         }
                       },
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.blue,
                       child: const Icon(Icons.add, color: Colors.white),
                     ),
                   ),

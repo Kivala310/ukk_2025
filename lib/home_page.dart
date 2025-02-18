@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage(''),
+                    backgroundImage: AssetImage('assets/logoadmin.jpg'),
                   ),
                   SizedBox(height: 10),
                   Text(
@@ -108,11 +108,11 @@ class _HomePageState extends State<HomePage> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromRGBO(201, 230, 240, 1),
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Color.fromRGBO(120, 179, 206, 1),
         unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.red,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.store),

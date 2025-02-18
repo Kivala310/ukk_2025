@@ -132,6 +132,49 @@ class _ProdukState extends State<Produk> {
     });
   }
 
+  //LOGIKA PENJUALAN
+  Future<void> updateStokProduk(int produkID, int jumlah) async {
+    try {
+      //mengambil stok produk saat ini
+      final response = await Supabase.instance.client
+      .from('produk')
+      .select('Stok')
+      .eq('ProdukID', produkID)
+      .single();
+
+      int currentStock = response['Stok'] ?? 0;
+
+      if (currentStock >= jumlah) {
+        //mengurangi stok produk
+        final newStock = currentStock - jumlah;
+
+        await Supabase.instance.client
+        .from('produk')
+        .update({'Stok': newStock})
+        .eq('ProdukID', produkID);
+
+        print('Stok produk berhasil diperbarui');
+
+      } else {
+        //jika stok tidak cukup
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Stok produk tidak mencukupi!'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error updating stock: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Gagal memperbarui stok produk'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -152,6 +195,8 @@ class _ProdukState extends State<Produk> {
                             controller: _searchController,
                             decoration: const InputDecoration(
                               hintText: 'Cari produk...',
+                              filled: true,
+                              fillColor: Color.fromRGBO(201, 230, 240, 1),
                               prefixIcon: Icon(Icons.search),
                               border: OutlineInputBorder(),
                             ),
